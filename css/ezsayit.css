@@ -1,0 +1,147 @@
+html {
+  overflow-y: scroll;
+}
+
+body{
+  font-family: Arial, sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-size:30px;
+  line-height:1.1
+}
+
+#pages{
+  font-size:0;
+  position:fixed;
+  top:10px
+}
+
+
+#c-page, #pages a{
+  font-size:16px;
+  line-height:.5;
+  color: #999;
+  padding: 2px 5px;
+  text-decoration:none
+}
+
+#c-page{
+  color:#000;
+}
+
+#pages a:hover{
+  color: #333;
+}
+
+#wrap{
+  width:750px;
+  margin:50px auto
+}
+
+.wrap-1 .idea-wrap{
+  width:400px;
+  margin:20px auto
+}
+
+.idea img{
+  width:100%;
+}
+
+.box{
+  background-color: #EEEEEE;
+  color: #000;
+  min-height:300px;
+  /*   border: 30px solid #0DA99B; */
+  border-right: 15px solid #0DA99B;
+    border-left: 15px solid #0DA99B;
+  border-radius: 2px;
+  padding: 35px 50px;
+  position:relative
+}
+
+.title{
+ font-size:1.20em;
+ margin-bottom: 0.3em;
+ font-weight:700
+}
+
+.fa-quote-left{
+ margin-left: -10.4em;
+ display:none
+}
+
+.w3-quote{
+  font-size:2.5em;
+  vertical-align: bottom;
+  line-height: 0
+}
+
+.w3-quote-left{
+  margin-left: -0.38em;
+  margin-right:0.04em
+}
+
+.w3-quote-right{
+
+}
+
+.idea{
+  font-size:1.0em
+
+}
+
+.who-wrap{
+  margin-top:.7em
+}
+
+.w3-dash{
+  font-size:25px;
+  margin-right:.35em;
+  line-height:0
+}
+
+.who{
+  color:#F1E50D;
+  color:#000;
+  font-size:.85em;
+}
+
+.w3-dash-note{
+  opacity:0
+}
+.note-wrap{
+  color:#F1E50D;
+  color:#000;
+  padding-right:50px
+}
+.note{
+  font-size:0.7em
+}
+
+.brand-wrap {
+  position: absolute;
+  right:15px;
+  bottom:5px
+}
+
+.brand-wrap img{
+  width:75px;
+}
+
+.caption{
+  text-align:right;
+  margin-top: 0.2em;
+  font-size:0.6em
+}
+
+.caption .fa{
+  font-size:1.2em;
+  margin-left:1.0em;
+  line-height:.8;
+  vertical-align:bottom;
+}
+
+.caption a{
+  text-decoration:none;
+  color:#000
+}
+

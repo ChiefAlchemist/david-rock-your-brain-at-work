@@ -3,6 +3,7 @@
  */
 
 var setupIdeaSizeUnit = '%';
+var setupNoSelect = 'No Summary Provided';
 
 var setupQuoteLeft = '<span class="w3-quote w3-quote-left">&#8220;</span>';
 var setupQuoteRight = '<span class="w3-quote w3-quote-right">&#8221;</span>';

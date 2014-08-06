@@ -4,41 +4,37 @@ html {
 
 body{
   font-family: Arial, sans-serif;
-  /*font-family: 'Open Sans', sans-serif;*/
-  font-size:30px;
+  font-family: 'Open Sans', sans-serif;
+  font-size:35px;
   line-height:1.1
 }
 
-#pages{
-  font-size:0;
-  position:fixed;
-  top:10px
+#page-wrap{
+  padding:0 5px 10px 10px
 }
 
-
-#c-page, #pages a{
-  font-size:16px;
-  line-height:.5;
-  color: #999;
-  padding: 2px 5px;
-  text-decoration:none
-}
-
-#c-page{
+#page-wrap .fa{
   color:#000;
+  font-size:25px;
+  margin:0 5px;
 }
 
-#pages a:hover{
-  color: #333;
+#form1{
+  
+  display:inline-block;
+  vertical-align:top;
+  margin-top:-0.0em;
 }
 
 #wrap{
-  width:750px;
-  margin:50px auto
+  max-width:970px;
+  width:100%;
+  margin:20px auto
 }
 
 .wrap-1 .idea-wrap{
-  width:400px;
+  max-width:400px;
+  width:90%;
   margin:20px auto
 }
 
@@ -50,9 +46,8 @@ body{
   background-color: #EEEEEE;
   color: #000;
   min-height:300px;
-  /*   border: 30px solid #0DA99B; */
   border-right: 15px solid #0DA99B;
-    border-left: 15px solid #0DA99B;
+  border-left: 15px solid #0DA99B;
   border-radius: 2px;
   padding: 35px 50px;
   position:relative
@@ -70,9 +65,9 @@ body{
 }
 
 .w3-quote{
-  font-size:2.5em;
+  font-size:2.0em;
   vertical-align: bottom;
-  line-height: 0
+  line-height: .25
 }
 
 .w3-quote-left{
@@ -130,12 +125,12 @@ body{
 .caption{
   text-align:right;
   margin-top: 0.2em;
-  font-size:0.6em
+  font-size:0.52em
 }
 
 .caption .fa{
   font-size:1.2em;
-  margin-left:1.0em;
+  margin-left:.7em;
   line-height:.8;
   vertical-align:bottom;
 }
@@ -143,5 +138,46 @@ body{
 .caption a{
   text-decoration:none;
   color:#000
+}
+
+@media (max-width: 768px) { 
+  body{
+    font-size:20px;
+	line-height:1.15
+  }
+  
+  .box{
+    padding: 20px 30px;
+  }
+  
+  #page-wrap .fa{
+    font-size:125%;
+  }
+  
+  .w3-dash{
+    font-size:15px
+  }
+  
+  .note-wrap{
+    padding-right:18px
+  }
+  
+  .brand-wrap img{
+    width:50px
+  }
+  
+  .caption{
+    text-align:left;
+	font-size: 18px;
+  }
+  
+  .caption a{
+    padding: .4em;
+    display:block;
+  }
+  
+  .caption .fa{
+    margin-left: .2em
+  }
 }
 

@@ -1,51 +1,59 @@
-// setup the SIMPLE page controls
-var pages = '<a href="#" title="Prev">' + '&lt;' + '</a><a href="#" title="Next">' + '&gt;' + '</a>' + '<span id="c-page">' + ' [ 1 ] ' + '</span>';
-var pagesOffset = 2;
-// setup the page numbers
+// setup the SIMPLE paging controls
+
+// setup the select
 ezSayItModel.ezobj.reverse();
 for (i = 0; i < ezSayItModel.ezobj.length; i++) {
-  thisSummary = ezSayItModel.ezobj[i].summary;
-  pages = pages + '<a href="#" title="' + thisSummary + '">' + (i + 1) + '</a>';
-}
-
-// add the pages list
-var pgs = document.getElementById('pages');
-pgs.innerHTML = pages;
-
-// setup the onclick for the pages
-var childrens = pgs.getElementsByTagName("a");
-for (i = 0; i < childrens.length; i++) {
-  childrens[i].onclick = function() {
-    doPage(this,ezSayItModel);  
+  if ( 'select' in ezSayItModel.ezobj[i] === false ){
+    thisSummary = setupNoSelect
+  }else{
+    thisSummary = ezSayItModel.ezobj[i].select;
   }
+  document.form1.page.options[i] = new Option( (i + 1) + ' - ' + thisSummary, (i + 1) );
 }
+
 // start with page 1
-doPage(childrens[0 + pagesOffset],ezSayItModel);
+currentPage = 1;
+doPage(currentPage,ezSayItModel);
 
-// when there's a click doPage
-function doPage(thisPage, ezSayItModel){
-  if ( thisPage.innerHTML == '&gt;' || thisPage.innerHTML == '&lt;' ){
-    if ( typeof pg === 'undefined'){
-     pg = 1;
-   } else {
-     if (thisPage.innerHTML == '&gt;' && (pg + 1) != ezSayItModel.ezobj.length){
-	   pg = pg + 1;
-	 } else{
-	   if (thisPage.innerHTML == '&lt;' && pg != 0){
-	     pg = pg - 1;
-	   }
-	 }
-   }
+// has the select been changed?
+document.getElementById('page').onchange=function(){
+  doPage(document.getElementById('page').value, ezSayItModel);
+  currentPage = document.getElementById('page').value;
+};
+
+// next / down
+document.getElementById('next-down').onclick = function() {
+  if (currentPage >= ezSayItModel.ezobj.length){
+    currentPage = ezSayItModel.ezobj.length;
   } else {
-    pg = parseInt(thisPage.innerHTML) - 1;
+    currentPage = currentPage + 1;
+	doPage(currentPage, ezSayItModel);
+	document.getElementById('page').options[currentPage-1].selected = true;
   }
-    document.getElementById('c-page').innerHTML = ' [ ' + (pg + 1) + ' ] ';
-	var theWrap =document.getElementById('wrap');
-	theWrap.setAttribute("class", 'wrap wrap-'  + (pg + 1)); //For Most Browsers
-	theWrap.setAttribute("className", 'wrap wrap-' + (pg + 1)); //For IE; harmless to other browsers
+}
 
-	if ( ezSayItModel.ezobj[pg].title == '' || ezSayItModel.ezobj[pg].title == false || 'title' in ezSayItModel.ezobj[pg] === false ) {	
-	  document.getElementById('title').innerHTML = '';
+// prev / up
+document.getElementById('prev-up').onclick = function() {  
+  if (currentPage < 2){
+    currentPage = 1;
+  } else {
+    currentPage = currentPage - 1;
+	doPage(currentPage, ezSayItModel);
+	document.getElementById('page').options[currentPage-1].selected = true;
+  }
+}
+
+// display the new "page"
+function doPage(thisPage, ezSayItModel){
+  // adjust for js starting at 0
+  pg = thisPage - 1;
+  
+  var theWrap = document.getElementById('wrap');
+  theWrap.setAttribute("class", 'wrap wrap-'  + (pg + 1)); //For Most Browsers
+  theWrap.setAttribute("className", 'wrap wrap-' + (pg + 1)); //For IE; harmless to other browsers
+
+  if ( ezSayItModel.ezobj[pg].title == '' || ezSayItModel.ezobj[pg].title == false || 'title' in ezSayItModel.ezobj[pg] === false ) {	
+    document.getElementById('title').innerHTML = '';
 	} else {
 	  document.getElementById('title').innerHTML = ezSayItModel.ezobj[pg].title;
 	}
@@ -58,7 +66,7 @@ function doPage(thisPage, ezSayItModel){
 	
 	if ( ezSayItModel.ezobj[pg].idea == '' || ezSayItModel.ezobj[pg].idea == false || 'idea' in ezSayItModel.ezobj[pg] === false ) {
 	  document.getElementById('idea').innerHTML = '';
-	}else{
+	} else {
 	  if (ezSayItModel.ezobj[pg].quotes != false){
 	    document.getElementById('idea').innerHTML = setupQuoteLeft + ezSayItModel.ezobj[pg].idea + setupQuoteRight;
 		} else { 
@@ -66,7 +74,6 @@ function doPage(thisPage, ezSayItModel){
 	  }	
 	}
 
-	
 	if ( ezSayItModel.ezobj[pg].who == '' || ezSayItModel.ezobj[pg].who == false || 'who' in ezSayItModel.ezobj[pg] === false ) {	
 	  document.getElementById('who').innerHTML = '';
 	} else {

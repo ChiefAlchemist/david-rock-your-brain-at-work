@@ -19,3 +19,7 @@ var setupCaption5 = '<a href="#" target="_blank"><i class="fa fa-linkedin-square
 var setupCaption6 = '<a href="#" target="_blank"><i class="fa fa-instagram"></i> ChiefAlchemist</a>';
 
 var setupCaption = setupCaption1 + setupCaption2 + setupCaption3 + setupCaption4; //+ setupCaption5 + setupCaption6;
+
+function functOops( hashPage ){
+  alert('Oops? Page: ' + hashPage + ' can\'t be found. Redirecting to the first page.');
+}

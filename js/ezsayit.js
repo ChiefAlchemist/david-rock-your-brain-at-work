@@ -1,3 +1,7 @@
+document.getElementById('page-wrap').style.opacity="0";
+
+window.onload = function (){
+
 // setup the SIMPLE paging controls
 
 // setup the select
@@ -18,7 +22,7 @@ if (hashPage == ''){
 } else {
   hashPage = hashPage.substring(1);
   if ( typeof ezSayItModel.ezobj[hashPage-1] === 'undefined' ){
-    alert ('Oops? Page: ' + hashPage + ' not found. Redirecting to the first page.');
+    functOops(hashPage);
     currentPage = 1;
 	window.location.hash = '#' + currentPage;
   }else{
@@ -30,6 +34,7 @@ document.getElementById('page').options[currentPage-1].selected = true;
 
 // has the select been changed?
 document.getElementById('page').onchange=function(){
+  console.log('selected value ' + document.getElementById('page').value);
   doPage(document.getElementById('page').value, ezSayItModel);
   currentPage = document.getElementById('page').value;
   window.location.hash = '#' + currentPage;
@@ -40,7 +45,7 @@ document.getElementById('next-down').onclick = function() {
   if (currentPage >= ezSayItModel.ezobj.length){
     currentPage = ezSayItModel.ezobj.length;
   } else {
-    currentPage = currentPage + 1;
+    currentPage = parseInt(currentPage) + 1;
 	doPage(currentPage, ezSayItModel);
 	document.getElementById('page').options[currentPage-1].selected = true;
 	window.location.hash = '#' + currentPage;
@@ -53,7 +58,7 @@ document.getElementById('prev-up').onclick = function() {
   if (currentPage < 2){
     currentPage = 1;
   } else {
-    currentPage = currentPage - 1;
+    currentPage = parseInt(currentPage) - 1;
 	doPage(currentPage, ezSayItModel);
 	document.getElementById('page').options[currentPage-1].selected = true;
 	window.location.hash = '#'+ currentPage;
@@ -64,13 +69,14 @@ document.getElementById('prev-up').onclick = function() {
 // display the new "page"
 function doPage(thisPage, ezSayItModel){
   // adjust for js starting at 0
-  pg = thisPage - 1;
-  
+ console.log('thisPage ' + thisPage); 
+  pg = parseInt(thisPage) - 1;
+  console.log('pg ' + pg);  
   var theWrap = document.getElementById('wrap');
   theWrap.setAttribute("class", 'wrap wrap-'  + (pg + 1)); //For Most Browsers
   theWrap.setAttribute("className", 'wrap wrap-' + (pg + 1)); //For IE; harmless to other browsers
 
-  if ( ezSayItModel.ezobj[pg].title == '' || ezSayItModel.ezobj[pg].title == false || 'title' in ezSayItModel.ezobj[pg] === false ) {	
+  if ( 'title' in ezSayItModel.ezobj[pg] === false || ezSayItModel.ezobj[pg].title == '' || ezSayItModel.ezobj[pg].title == false ) {	
     document.getElementById('title').innerHTML = '';
 	} else {
 	  document.getElementById('title').innerHTML = ezSayItModel.ezobj[pg].title;
@@ -109,4 +115,7 @@ function doPage(thisPage, ezSayItModel){
 	} else {
 	  document.getElementById('caption').innerHTML = ezSayItModel.ezobj[pg].caption;
 	} 
+}
+
+document.getElementById('page-wrap').style.opacity="1";
 }

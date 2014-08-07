@@ -46,8 +46,8 @@ body{
   background-color: #EEEEEE;
   color: #000;
   min-height:300px;
-  border-right: 15px solid #0DA99B;
-  border-left: 15px solid #0DA99B;
+  border-right: 25px solid #0DA99B;
+  border-left: 25px solid #0DA99B;
   border-radius: 2px;
   padding: 35px 50px;
   position:relative
@@ -148,6 +148,8 @@ body{
   
   .box{
     padding: 20px 30px;
+	border-right-width: 10px;
+	border-left-width: 10px
   }
   
   #page-wrap .fa{

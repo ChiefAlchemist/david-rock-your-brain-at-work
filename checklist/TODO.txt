@@ -1,0 +1,15 @@
+- https://pages.github.com/
+
+- http://www.generatefavicon.com/ - save to the img folder as: favicon.ico
+
+- img / logo.png - this is the brand logo. 
+
+- img / cover.jog - should be 400px wide and ideally 400px high. note: height is a concern because it effects the height of the first page.
+
+- index.html - add the meta details, change the font. 
+
+- Customize CSS as necessary
+
+- js/ setup.js - make changes as necesary. tag / shorten links to social media profiles. 
+
+- json/ ezjson.js - this is the data file. once the above is complete this is all that should be updated.

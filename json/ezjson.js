@@ -25,7 +25,7 @@ var ezSayItModel = {
 	  'index'		: 2,
 	  'title'		: '',
 	  'idea_size'	: '',
-	  'idea'		: "This book will help you work smarter, be more focused and productive, stay cool under pressure, reduce the length of meetings, and even tackle the hardest challenge of all: influencing other people<br><br>This book will transform your performance at work by letting you in on recent and important discoveries about the human brain.",
+	  'idea'		: "This book will help you work smarter, be more focused and productive, stay cool under pressure, reduce the length of meetings, and even tackle the hardest challenge of all: influencing other people.<br><br>This book will transform your performance at work by letting you in on recent and important discoveries about the human brain.",
 	  'quotes'		: true,
 	  'select'		: 'This book will #1',
 	  'who'			: 'David Rock',

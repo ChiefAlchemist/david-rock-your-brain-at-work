@@ -11,14 +11,28 @@ for (i = 0; i < ezSayItModel.ezobj.length; i++) {
   document.form1.page.options[i] = new Option( (i + 1) + ' - ' + thisSummary, (i + 1) );
 }
 
-// start with page 1
-currentPage = 1;
+// cheat and use the #hash as the page number
+var hashPage = window.location.hash;
+if (hashPage == ''){
+  currentPage = 1
+} else {
+  hashPage = hashPage.substring(1);
+  if ( typeof ezSayItModel.ezobj[hashPage-1] === 'undefined' ){
+    alert ('Oops? Page: ' + hashPage + ' not found. Redirecting to the first page.');
+    currentPage = 1;
+	window.location.hash = '#' + currentPage;
+  }else{
+    currentPage = hashPage;
+  }
+}
 doPage(currentPage,ezSayItModel);
+document.getElementById('page').options[currentPage-1].selected = true;
 
 // has the select been changed?
 document.getElementById('page').onchange=function(){
   doPage(document.getElementById('page').value, ezSayItModel);
   currentPage = document.getElementById('page').value;
+  window.location.hash = '#' + currentPage;
 };
 
 // next / down
@@ -29,7 +43,9 @@ document.getElementById('next-down').onclick = function() {
     currentPage = currentPage + 1;
 	doPage(currentPage, ezSayItModel);
 	document.getElementById('page').options[currentPage-1].selected = true;
+	window.location.hash = '#' + currentPage;
   }
+  return false;
 }
 
 // prev / up
@@ -40,7 +56,9 @@ document.getElementById('prev-up').onclick = function() {
     currentPage = currentPage - 1;
 	doPage(currentPage, ezSayItModel);
 	document.getElementById('page').options[currentPage-1].selected = true;
+	window.location.hash = '#'+ currentPage;
   }
+  return false;
 }
 
 // display the new "page"

@@ -35,7 +35,7 @@ body{
 .wrap-1 .idea-wrap{
   max-width:400px;
   width:90%;
-  margin:20px auto
+  margin:20px auto 0 auto
 }
 
 .idea img{
@@ -81,9 +81,11 @@ body{
 
 .idea{
   font-size:1.0em
-
 }
 
+.lower-wrap{
+  min-height: 70px
+}
 .who-wrap{
   margin-top:.7em
 }
@@ -104,6 +106,7 @@ body{
   opacity:0
 }
 .note-wrap{
+  margin-top:.3em;
   color:#F1E50D;
   color:#000;
   padding-right:50px

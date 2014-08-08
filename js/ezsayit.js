@@ -1,31 +1,33 @@
-document.getElementById('page-wrap').style.opacity="0";
-
+/**
+ * *Not* min'ed (yet) because load is minimal and time short
+ */
 window.onload = function (){
+  document.getElementById('page-wrap').style.opacity="0";
 
 // setup the SIMPLE paging controls
 
-if ( typeof setupStyles != 'undefined' && setupStyles instanceof Array ){
+  if ( typeof setupStyles != 'undefined' && setupStyles instanceof Array ){
 
-  var selectStyle = document.createElement("select");
-  selectStyle.setAttribute("id", "select-style");
+    var selectStyle = document.createElement("select");
+    selectStyle.setAttribute("id", "select-style");
   
-  // setup the select for the style variation
-  for (i = 0; i < setupStyles.length; i++) {
-    option = document.createElement("option");
-	option.setAttribute("value", (i + 1));
-	option.innerHTML = setupStyles[i];
-	selectStyle.appendChild(option);
-  }  
-  document.getElementById('styles').appendChild(selectStyle);
-}
+    // setup the select for the style variation
+    for (i = 0; i < setupStyles.length; i++) {
+      option = document.createElement("option");
+	  option.setAttribute("value", (i + 1));
+	  option.innerHTML = setupStyles[i];
+	  selectStyle.appendChild(option);
+    }  
+    document.getElementById('styles').appendChild(selectStyle);
+  }
 
-if ( document.getElementById('select-style') instanceof Object) {
-  // has the select been changed?
-  document.getElementById('select-style').onchange=function(){
-    document.getElementsByTagName('body')[0].className = 'style-' + document.getElementById('select-style').value;
-  };
-}
-
+  if ( document.getElementById('select-style') instanceof Object) {
+    // has the select been changed?
+    objIdSelectStyle = document.getElementById('select-style');
+    objIdSelectStyle.onchange=function(){
+      document.getElementsByTagName('body')[0].className = 'style-' + objIdSelectStyle.value;
+    };
+  }
 
 // setup the select
 ezSayItModel.ezobj.reverse();
@@ -53,12 +55,13 @@ if (hashPage == ''){
   }
 }
 doPage(currentPage,ezSayItModel);
-document.getElementById('page').options[currentPage-1].selected = true;
+objIdPage = document.getElementById('page');
+objIdPage.options[currentPage-1].selected = true;
 
 // has the select been changed?
-document.getElementById('page').onchange=function(){
-  doPage(document.getElementById('page').value, ezSayItModel);
-  currentPage = document.getElementById('page').value;
+objIdPage.onchange=function(){
+  doPage(objIdPage.value, ezSayItModel);
+  currentPage = objIdPage.value;
   window.location.hash = '#' + currentPage;
 };
 
@@ -69,7 +72,7 @@ document.getElementById('next-down').onclick = function() {
   } else {
     currentPage = parseInt(currentPage) + 1;
 	doPage(currentPage, ezSayItModel);
-	document.getElementById('page').options[currentPage-1].selected = true;
+	objIdPage.options[currentPage-1].selected = true;
 	window.location.hash = '#' + currentPage;
   }
   return false;
@@ -82,7 +85,7 @@ document.getElementById('prev-up').onclick = function() {
   } else {
     currentPage = parseInt(currentPage) - 1;
 	doPage(currentPage, ezSayItModel);
-	document.getElementById('page').options[currentPage-1].selected = true;
+	objIdPage.options[currentPage-1].selected = true;
 	window.location.hash = '#'+ currentPage;
   }
   return false;
@@ -96,54 +99,59 @@ function doPage(thisPage, ezSayItModel){
   theWrap.setAttribute("class", 'wrap wrap-'  + (pg + 1)); //For Most Browsers
   theWrap.setAttribute("className", 'wrap wrap-' + (pg + 1)); //For IE; harmless to other browsers
 
+  objIdTitle = document.getElementById('title');
   if ( 'title' in ezSayItModel.ezobj[pg] === false || ezSayItModel.ezobj[pg].title == '' || ezSayItModel.ezobj[pg].title == false ) {	
-    document.getElementById('title').innerHTML = '';
-	document.getElementById('title').style.display = "none";
-	} else {
-	  document.getElementById('title').style.display = "block";
-	  document.getElementById('title').innerHTML = ezSayItModel.ezobj[pg].title;
-	}
+    objIdTitle.innerHTML = '';
+	objIdTitle.style.display = "none";
+  } else {
+    objIdTitle.style.display = "block";
+    objIdTitle.innerHTML = ezSayItModel.ezobj[pg].title;
+  }
 	
+	objIdIdea = document.getElementById('idea');
 	if ( ezSayItModel.ezobj[pg].idea_size == '' || ezSayItModel.ezobj[pg].idea_size == false || 'idea_size' in ezSayItModel.ezobj[pg] === false ) {	
-	  document.getElementById('idea').style.fontSize = '100%';
+	  objIdIdea.style.fontSize = '100%';
 	} else {
-	  document.getElementById('idea').style.fontSize = ezSayItModel.ezobj[pg].idea_size + setupIdeaSizeUnit;
+	  objIdIdea.style.fontSize = ezSayItModel.ezobj[pg].idea_size + setupIdeaSizeUnit;
 	} 
 	
 	if ( ezSayItModel.ezobj[pg].idea == '' || ezSayItModel.ezobj[pg].idea == false || 'idea' in ezSayItModel.ezobj[pg] === false ) {
-	  document.getElementById('idea').innerHTML = '';
-	  document.getElementById('idea').style.display = "none";
+	  objIdIdea.innerHTML = '';
+	  objIdIdea.style.display = "none";
 	} else {
-	   document.getElementById('idea').style.display = "block";
+	   objIdIdea.style.display = "block";
 	  if (ezSayItModel.ezobj[pg].quotes != false){
-	    document.getElementById('idea').innerHTML = setupQuoteLeft + ezSayItModel.ezobj[pg].idea + setupQuoteRight;
+	    objIdIdea.innerHTML = setupQuoteLeft + ezSayItModel.ezobj[pg].idea + setupQuoteRight;
 	  } else { 
-		document.getElementById('idea').innerHTML = ezSayItModel.ezobj[pg].idea;
+		objIdIdea.innerHTML = ezSayItModel.ezobj[pg].idea;
 	  }	
 	}
-
+	
+	objIdWho = document.getElementById('who');
 	if ( ezSayItModel.ezobj[pg].who == '' || ezSayItModel.ezobj[pg].who == false || 'who' in ezSayItModel.ezobj[pg] === false ) {	
-	  document.getElementById('who').innerHTML = '';
-	  document.getElementById('who').style.display = "none";
+	  objIdWho.innerHTML = '';
+	  objIdWho.style.display = "none";
 	} else {
-	  document.getElementById('who').style.display = "block";
-	  document.getElementById('who').innerHTML = setupDashWho + ezSayItModel.ezobj[pg].who;
+	  objIdWho.style.display = "block";
+	  objIdWho.innerHTML = setupDashWho + ezSayItModel.ezobj[pg].who;
 	}
 	
+	objIdNote = document.getElementById('note');
 	if ( ezSayItModel.ezobj[pg].note == '' || ezSayItModel.ezobj[pg].note == false || 'note' in ezSayItModel.ezobj[pg] === false ) {
-	  document.getElementById('note').innerHTML = '';
-	  document.getElementById('note').style.display = "none";
+	  objIdNote.innerHTML = '';
+	  objIdNote.style.display = "none";
 	} else {
-	  document.getElementById('note').style.display = "block";
-	  document.getElementById('note').innerHTML = setupDashNote + ezSayItModel.ezobj[pg].note;
+	  objIdNote.style.display = "block";
+	  objIdNote.innerHTML = setupDashNote + ezSayItModel.ezobj[pg].note;
 	} 
 	
+	objIdCaption = document.getElementById('caption');
 	if ( ezSayItModel.ezobj[pg].caption == '' || ezSayItModel.ezobj[pg].caption == false || 'caption' in ezSayItModel.ezobj[pg] === false ) {
-	 document.getElementById('caption').innerHTML = ''; 
-	 document.getElementById('caption').style.display = "none";
+	 objIdCaption.innerHTML = ''; 
+	 objIdCaption.style.display = "none";
 	} else {
-	  document.getElementById('caption').style.display = "block";
-	  document.getElementById('caption').innerHTML = ezSayItModel.ezobj[pg].caption;
+	  objIdCaption.style.display = "block";
+	  objIdCaption.innerHTML = ezSayItModel.ezobj[pg].caption;
 	} 
 }
 

@@ -1,7 +1,7 @@
 /**
  * ref: http://www.danshort.com/HTMLentities/index.php?w=dingb
  */
-
+var setupStyles = ''; //['Red', 'Black', 'White'];
 var setupIdeaSizeUnit = '%';
 var setupNoSelect = 'No Summary Provided';
 

@@ -4,6 +4,29 @@ window.onload = function (){
 
 // setup the SIMPLE paging controls
 
+if ( typeof setupStyles != 'undefined' && setupStyles instanceof Array ){
+
+  var selectStyle = document.createElement("select");
+  selectStyle.setAttribute("id", "select-style");
+  
+  // setup the select for the style variation
+  for (i = 0; i < setupStyles.length; i++) {
+    option = document.createElement("option");
+	option.setAttribute("value", (i + 1));
+	option.innerHTML = setupStyles[i];
+	selectStyle.appendChild(option);
+  }  
+  document.getElementById('styles').appendChild(selectStyle);
+}
+
+if ( document.getElementById('select-style') instanceof Object) {
+  // has the select been changed?
+  document.getElementById('select-style').onchange=function(){
+    document.getElementsByTagName('body')[0].className = 'style-' + document.getElementById('select-style').value;
+  };
+}
+
+
 // setup the select
 ezSayItModel.ezobj.reverse();
 for (i = 0; i < ezSayItModel.ezobj.length; i++) {
@@ -34,7 +57,6 @@ document.getElementById('page').options[currentPage-1].selected = true;
 
 // has the select been changed?
 document.getElementById('page').onchange=function(){
-  console.log('selected value ' + document.getElementById('page').value);
   doPage(document.getElementById('page').value, ezSayItModel);
   currentPage = document.getElementById('page').value;
   window.location.hash = '#' + currentPage;
@@ -69,16 +91,16 @@ document.getElementById('prev-up').onclick = function() {
 // display the new "page"
 function doPage(thisPage, ezSayItModel){
   // adjust for js starting at 0
- console.log('thisPage ' + thisPage); 
   pg = parseInt(thisPage) - 1;
-  console.log('pg ' + pg);  
   var theWrap = document.getElementById('wrap');
   theWrap.setAttribute("class", 'wrap wrap-'  + (pg + 1)); //For Most Browsers
   theWrap.setAttribute("className", 'wrap wrap-' + (pg + 1)); //For IE; harmless to other browsers
 
   if ( 'title' in ezSayItModel.ezobj[pg] === false || ezSayItModel.ezobj[pg].title == '' || ezSayItModel.ezobj[pg].title == false ) {	
     document.getElementById('title').innerHTML = '';
+	document.getElementById('title').style.display = "none";
 	} else {
+	  document.getElementById('title').style.display = "block";
 	  document.getElementById('title').innerHTML = ezSayItModel.ezobj[pg].title;
 	}
 	
@@ -90,29 +112,37 @@ function doPage(thisPage, ezSayItModel){
 	
 	if ( ezSayItModel.ezobj[pg].idea == '' || ezSayItModel.ezobj[pg].idea == false || 'idea' in ezSayItModel.ezobj[pg] === false ) {
 	  document.getElementById('idea').innerHTML = '';
+	  document.getElementById('idea').style.display = "none";
 	} else {
+	   document.getElementById('idea').style.display = "block";
 	  if (ezSayItModel.ezobj[pg].quotes != false){
 	    document.getElementById('idea').innerHTML = setupQuoteLeft + ezSayItModel.ezobj[pg].idea + setupQuoteRight;
-		} else { 
+	  } else { 
 		document.getElementById('idea').innerHTML = ezSayItModel.ezobj[pg].idea;
 	  }	
 	}
 
 	if ( ezSayItModel.ezobj[pg].who == '' || ezSayItModel.ezobj[pg].who == false || 'who' in ezSayItModel.ezobj[pg] === false ) {	
 	  document.getElementById('who').innerHTML = '';
+	  document.getElementById('who').style.display = "none";
 	} else {
+	  document.getElementById('who').style.display = "block";
 	  document.getElementById('who').innerHTML = setupDashWho + ezSayItModel.ezobj[pg].who;
 	}
 	
 	if ( ezSayItModel.ezobj[pg].note == '' || ezSayItModel.ezobj[pg].note == false || 'note' in ezSayItModel.ezobj[pg] === false ) {
 	  document.getElementById('note').innerHTML = '';
+	  document.getElementById('note').style.display = "none";
 	} else {
+	  document.getElementById('note').style.display = "block";
 	  document.getElementById('note').innerHTML = setupDashNote + ezSayItModel.ezobj[pg].note;
 	} 
 	
 	if ( ezSayItModel.ezobj[pg].caption == '' || ezSayItModel.ezobj[pg].caption == false || 'caption' in ezSayItModel.ezobj[pg] === false ) {
 	 document.getElementById('caption').innerHTML = ''; 
+	 document.getElementById('caption').style.display = "none";
 	} else {
+	  document.getElementById('caption').style.display = "block";
 	  document.getElementById('caption').innerHTML = ezSayItModel.ezobj[pg].caption;
 	} 
 }

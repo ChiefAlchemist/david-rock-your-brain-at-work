@@ -8,7 +8,7 @@
  *
  */
 
-var ezSayItModel = {
+var ezMQ = {
   "ezobj":[
     {
 	  'index'		: 3,

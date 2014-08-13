@@ -1,5 +1,7 @@
 /**
- * *Not* min'ed (yet) because load is minimal and time short
+ * Important: Noting to edit / change here, unless of course you've forked it.
+ *
+ * *Not* min'ed (yet) because load is minimal and time to re-min short. mikn it ia a TODO but hardly a deal breaker.
  */
 window.onload = function (){
   document.getElementById('page-wrap').style.opacity="0";
@@ -30,12 +32,12 @@ window.onload = function (){
   }
 
 // setup the select
-ezSayItModel.ezobj.reverse();
-for (i = 0; i < ezSayItModel.ezobj.length; i++) {
-  if ( 'select' in ezSayItModel.ezobj[i] === false ){
+ezMQ.ezobj.reverse();
+for (i = 0; i < ezMQ.ezobj.length; i++) {
+  if ( 'select' in ezMQ.ezobj[i] === false ){
     thisSummary = setupNoSelect
   }else{
-    thisSummary = ezSayItModel.ezobj[i].select;
+    thisSummary = ezMQ.ezobj[i].select;
   }
   document.form1.page.options[i] = new Option( (i + 1) + ' - ' + thisSummary, (i + 1) );
 }
@@ -43,10 +45,14 @@ for (i = 0; i < ezSayItModel.ezobj.length; i++) {
 // cheat and use the #hash as the page number
 var hashPage = window.location.hash;
 if (hashPage == ''){
-  currentPage = 1
+  if (setupLastFirst === true){
+    currentPage = ezMQ.ezobj.length;
+  } else {
+    currentPage = 1
+  }
 } else {
   hashPage = hashPage.substring(1);
-  if ( typeof ezSayItModel.ezobj[hashPage-1] === 'undefined' ){
+  if ( typeof ezMQ.ezobj[hashPage-1] === 'undefined' ){
     functOops(hashPage);
     currentPage = 1;
 	window.location.hash = '#' + currentPage;
@@ -54,24 +60,24 @@ if (hashPage == ''){
     currentPage = hashPage;
   }
 }
-doPage(currentPage,ezSayItModel);
+doPage(currentPage,ezMQ);
 objIdPage = document.getElementById('page');
 objIdPage.options[currentPage-1].selected = true;
 
 // has the select been changed?
 objIdPage.onchange=function(){
-  doPage(objIdPage.value, ezSayItModel);
+  doPage(objIdPage.value, ezMQ);
   currentPage = objIdPage.value;
   window.location.hash = '#' + currentPage;
 };
 
 // next / down
 document.getElementById('next-down').onclick = function() {
-  if (currentPage >= ezSayItModel.ezobj.length){
-    currentPage = ezSayItModel.ezobj.length;
+  if (currentPage >= ezMQ.ezobj.length){
+    currentPage = ezMQ.ezobj.length;
   } else {
     currentPage = parseInt(currentPage) + 1;
-	doPage(currentPage, ezSayItModel);
+	doPage(currentPage, ezMQ);
 	objIdPage.options[currentPage-1].selected = true;
 	window.location.hash = '#' + currentPage;
   }
@@ -84,7 +90,7 @@ document.getElementById('prev-up').onclick = function() {
     currentPage = 1;
   } else {
     currentPage = parseInt(currentPage) - 1;
-	doPage(currentPage, ezSayItModel);
+	doPage(currentPage, ezMQ);
 	objIdPage.options[currentPage-1].selected = true;
 	window.location.hash = '#'+ currentPage;
   }
@@ -92,7 +98,7 @@ document.getElementById('prev-up').onclick = function() {
 }
 
 // display the new "page"
-function doPage(thisPage, ezSayItModel){
+function doPage(thisPage, ezMQ){
   // adjust for js starting at 0
   pg = parseInt(thisPage) - 1;
   var theWrap = document.getElementById('wrap');
@@ -100,58 +106,58 @@ function doPage(thisPage, ezSayItModel){
   theWrap.setAttribute("className", 'wrap wrap-' + (pg + 1)); //For IE; harmless to other browsers
 
   objIdTitle = document.getElementById('title');
-  if ( 'title' in ezSayItModel.ezobj[pg] === false || ezSayItModel.ezobj[pg].title == '' || ezSayItModel.ezobj[pg].title == false ) {	
+  if ( 'title' in ezMQ.ezobj[pg] === false || ezMQ.ezobj[pg].title == '' || ezMQ.ezobj[pg].title == false ) {	
     objIdTitle.innerHTML = '';
 	objIdTitle.style.display = "none";
   } else {
     objIdTitle.style.display = "block";
-    objIdTitle.innerHTML = ezSayItModel.ezobj[pg].title;
+    objIdTitle.innerHTML = ezMQ.ezobj[pg].title;
   }
 	
 	objIdIdea = document.getElementById('idea');
-	if ( ezSayItModel.ezobj[pg].idea_size == '' || ezSayItModel.ezobj[pg].idea_size == false || 'idea_size' in ezSayItModel.ezobj[pg] === false ) {	
+	if ( ezMQ.ezobj[pg].idea_size == '' || ezMQ.ezobj[pg].idea_size == false || 'idea_size' in ezMQ.ezobj[pg] === false ) {	
 	  objIdIdea.style.fontSize = '100%';
 	} else {
-	  objIdIdea.style.fontSize = ezSayItModel.ezobj[pg].idea_size + setupIdeaSizeUnit;
+	  objIdIdea.style.fontSize = ezMQ.ezobj[pg].idea_size + setupIdeaSizeUnit;
 	} 
 	
-	if ( ezSayItModel.ezobj[pg].idea == '' || ezSayItModel.ezobj[pg].idea == false || 'idea' in ezSayItModel.ezobj[pg] === false ) {
+	if ( ezMQ.ezobj[pg].idea == '' || ezMQ.ezobj[pg].idea == false || 'idea' in ezMQ.ezobj[pg] === false ) {
 	  objIdIdea.innerHTML = '';
 	  objIdIdea.style.display = "none";
 	} else {
 	   objIdIdea.style.display = "block";
-	  if (ezSayItModel.ezobj[pg].quotes != false){
-	    objIdIdea.innerHTML = setupQuoteLeft + ezSayItModel.ezobj[pg].idea + setupQuoteRight;
+	  if ( ezMQ.ezobj[pg].quotes == '' || ezMQ.ezobj[pg].quotes == false || 'quotes' in ezMQ.ezobj[pg] === false ){
+	    objIdIdea.innerHTML = ezMQ.ezobj[pg].idea;
 	  } else { 
-		objIdIdea.innerHTML = ezSayItModel.ezobj[pg].idea;
+	    objIdIdea.innerHTML = setupQuoteLeft + ezMQ.ezobj[pg].idea + setupQuoteRight;
 	  }	
 	}
 	
 	objIdWho = document.getElementById('who');
-	if ( ezSayItModel.ezobj[pg].who == '' || ezSayItModel.ezobj[pg].who == false || 'who' in ezSayItModel.ezobj[pg] === false ) {	
+	if ( ezMQ.ezobj[pg].who == '' || ezMQ.ezobj[pg].who == false || 'who' in ezMQ.ezobj[pg] === false ) {	
 	  objIdWho.innerHTML = '';
 	  objIdWho.style.display = "none";
 	} else {
 	  objIdWho.style.display = "block";
-	  objIdWho.innerHTML = setupDashWho + ezSayItModel.ezobj[pg].who;
+	  objIdWho.innerHTML = setupDashWho + ezMQ.ezobj[pg].who;
 	}
 	
 	objIdNote = document.getElementById('note');
-	if ( ezSayItModel.ezobj[pg].note == '' || ezSayItModel.ezobj[pg].note == false || 'note' in ezSayItModel.ezobj[pg] === false ) {
+	if ( ezMQ.ezobj[pg].note == '' || ezMQ.ezobj[pg].note == false || 'note' in ezMQ.ezobj[pg] === false ) {
 	  objIdNote.innerHTML = '';
 	  objIdNote.style.display = "none";
 	} else {
 	  objIdNote.style.display = "block";
-	  objIdNote.innerHTML = setupDashNote + ezSayItModel.ezobj[pg].note;
+	  objIdNote.innerHTML = setupDashNote + ezMQ.ezobj[pg].note;
 	} 
 	
 	objIdCaption = document.getElementById('caption');
-	if ( ezSayItModel.ezobj[pg].caption == '' || ezSayItModel.ezobj[pg].caption == false || 'caption' in ezSayItModel.ezobj[pg] === false ) {
+	if ( ezMQ.ezobj[pg].caption == '' || ezMQ.ezobj[pg].caption == false || 'caption' in ezMQ.ezobj[pg] === false ) {
 	 objIdCaption.innerHTML = ''; 
 	 objIdCaption.style.display = "none";
 	} else {
 	  objIdCaption.style.display = "block";
-	  objIdCaption.innerHTML = ezSayItModel.ezobj[pg].caption;
+	  objIdCaption.innerHTML = ezMQ.ezobj[pg].caption;
 	} 
 }
 

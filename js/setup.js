@@ -55,11 +55,10 @@ var setupDashNote = '<span class="w3-dash w3-dash-note">&mdash;</span>';
  */
 var setupCaption = new Object;
 
-setupCaption.c1 = '<a href="#" target="_blank"><i class="fa fa-twitter-square"></i> ChiefAlchemist1</a>'; 
-setupCaption.c2 = '<a href="#" target="_blank"><i class="fa fa-facebook-square"></i> ChiefAlchemist</a>';
-setupCaption.c3 = '<a href="#" target="_blank"><i class="fa fa-pinterest-square"></i> ChiefAlchemist</a>';
-setupCaption.c4 = '<a href="#" target="_blank"><i class="fa fa-globe"></i> ChiefAlchemist.com</a>';
-
+setupCaption.c1 = '<a href="http://autd.co/BK26B" target="_blank"><i class="fa fa-twitter-square"></i> ChiefAlchemist1</a>'; 
+setupCaption.c2 = '<a href="http://autd.co/0oyua" target="_blank"><i class="fa fa-facebook-square"></i> ChiefAlchemist</a>';
+setupCaption.c3 = '<a href="http://autd.co/ZEJAT" target="_blank"><i class="fa fa-pinterest-square"></i> ChiefAlchemist</a>';
+setupCaption.c4 = '<a href="http://autd.co/X9VBE" target="_blank"><i class="fa fa-globe"></i> ChiefAlchemist.com</a>';
 setupCaption.c5 = '<a href="#" target="_blank"><i class="fa fa-linkedin-square"></i> ChiefAlchemist</a>';
 setupCaption.c6 = '<a href="#" target="_blank"><i class="fa fa-instagram"></i> ChiefAlchemist</a>';
 
@@ -73,7 +72,7 @@ var setupCaption = setupCaption.c1 + setupCaption.c2 + setupCaption.c3 + setupCa
  * 
  * For example myMQuote.com#3 would display page 3 *if* there is a page 3.
  * If there's no page 3 then this function would display the error message defined. 
- */
+ */http://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyua
 function functOops( hashPage ){
   alert('Oops? Page: ' + hashPage + ' can\'t be found. Redirecting to the first page.');
 }

@@ -72,7 +72,7 @@ var setupCaption = setupCaption.c1 + setupCaption.c2 + setupCaption.c3 + setupCa
  * 
  * For example myMQuote.com#3 would display page 3 *if* there is a page 3.
  * If there's no page 3 then this function would display the error message defined. 
- */http://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyuahttp://autd.co/0oyua
+ */
 function functOops( hashPage ){
   alert('Oops? Page: ' + hashPage + ' can\'t be found. Redirecting to the first page.');
 }
